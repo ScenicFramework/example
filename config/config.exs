@@ -14,14 +14,13 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-
 # should normally live in config.exs of the device app
 config :scenic, :assets,
   module: Example.Assets,
   alias: [
     parrot: "images/parrot.jpg"
   ]
-  
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs" 
+import_config "#{Mix.env()}.exs"

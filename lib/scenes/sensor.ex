@@ -38,7 +38,8 @@ defmodule Example.Scene.Sensor do
     col = vp_width / 6
 
     # build the graph
-    graph = Graph.build(font: :roboto, font_size: 16)
+    graph =
+      Graph.build(font: :roboto, font_size: 16)
       # text input
       |> group(
         fn graph ->
@@ -81,28 +82,28 @@ defmodule Example.Scene.Sensor do
       |> Notes.add_to_graph(@notes)
 
     # subscribe to the simulated temperature sensor
-    Scenic.PubSub.subscribe( :temperature )
+    Scenic.PubSub.subscribe(:temperature)
 
     scene =
       scene
-      |> assign( graph: graph )
-      |> push_graph( graph )
+      |> assign(graph: graph)
+      |> push_graph(graph)
 
-    { :ok, scene }
+    {:ok, scene}
   end
 
-  def handle_event( event, from, scene ) do
-    IO.inspect( {event, from}, label: "Sensor.handle_event" )
-    { :noreply, scene }
+  def handle_event(event, from, scene) do
+    IO.inspect({event, from}, label: "Sensor.handle_event")
+    {:noreply, scene}
   end
-
 
   # --------------------------------------------------------
   # receive updates from the simulated temperature sensor
   def handle_info({@pubsub_data, {:temperature, kelvin, _}}, %{assigns: %{graph: graph}} = scene) do
+    # (9 / 5 * (kelvin - 273) + 32)     # Fahrenheit
+    # Celsius
     temperature =
-      # (9 / 5 * (kelvin - 273) + 32)     # Fahrenheit
-      (kelvin - 273)                      # Celsius
+      (kelvin - 273)
       |> :erlang.float_to_binary(decimals: 1)
 
     # center the temperature on the viewport
@@ -110,10 +111,9 @@ defmodule Example.Scene.Sensor do
 
     scene =
       scene
-      |> assign( graph: graph )
-      |> push_graph( graph )
+      |> assign(graph: graph)
+      |> push_graph(graph)
 
     {:noreply, scene}
   end
-
 end

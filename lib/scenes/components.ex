@@ -22,7 +22,7 @@ defmodule Example.Scene.Components do
   """
 
   @header [
-    text_spec("Various components", translate: {15, 20} ),
+    text_spec("Various components", translate: {15, 20}),
     text_spec("Event received:", translate: {15, 65}, id: :event_text),
     # this button will cause the scene to crash.
     button_spec("Crash", id: :btn_crash, theme: :danger, t: {370, 0})
@@ -50,7 +50,7 @@ defmodule Example.Scene.Components do
   @slider slider_spec({{0, 100}, 0}, id: :num_slider, t: {0, 100})
 
   @radio_group radio_group_spec(
-                  {[
+                 {[
                     {"Radio A", :radio_a},
                     {"Radio B", :radio_b},
                     {"Radio C", :radio_c}
@@ -63,7 +63,12 @@ defmodule Example.Scene.Components do
 
   @toggle toggle_spec(false, id: :toggle, t: {340, 120})
 
-  @text_field text_field_spec("Some text", id: :text, width: 240, hint: "Type here...", t: {200, 160})
+  @text_field text_field_spec("Some text",
+                id: :text,
+                width: 240,
+                hint: "Type here...",
+                t: {200, 160}
+              )
 
   @password_field text_field_spec("",
                     id: :password,
@@ -116,9 +121,9 @@ defmodule Example.Scene.Components do
 
   defp graph(), do: @graph
 
-  def init( scene, _param, _opts ) do
-    scene = push_graph( scene, graph() )
-    { :ok, scene }
+  def init(scene, _param, _opts) do
+    scene = push_graph(scene, graph())
+    {:ok, scene}
   end
 
   # force the scene to crash
@@ -127,13 +132,14 @@ defmodule Example.Scene.Components do
     # No need to return anything. Already crashed.
   end
 
-
   # display the received message
   def handle_event(event, _, scene) do
-    scene = push_graph(
-      scene,
-      Graph.modify( graph(), :event_text, &text(&1, @event_str <> inspect(event)) )
-    )
+    scene =
+      push_graph(
+        scene,
+        Graph.modify(graph(), :event_text, &text(&1, @event_str <> inspect(event)))
+      )
+
     {:noreply, scene}
   end
 end

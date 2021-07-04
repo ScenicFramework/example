@@ -69,61 +69,57 @@ defmodule Example.Scene.Transforms do
          |> Nav.add_to_graph(__MODULE__)
          |> Notes.add_to_graph(@notes)
 
-
   # ============================================================================
   # setup
 
   # --------------------------------------------------------
   def init(scene, _param, _opts) do
-
     graph = @graph
 
     scene =
       scene
-      |> push_graph( graph )
-      |> assign([
+      |> push_graph(graph)
+      |> assign(
         graph: graph,
         x: @start_x,
         y: @start_y
-      ])
+      )
 
     {:ok, scene}
   end
 
   # --------------------------------------------------------
-  def handle_event( {:value_changed, :pos_x, x}, _, %{ assigns: %{graph: graph, y: y} } = scene ) do
-    graph = Graph.modify( graph, :ui_group, &update_opts(&1, translate: {x, y}) )
-    scene = push_graph( scene, graph )
-    {:halt, assign(scene, graph: graph, x: x) }
-  end
-
-
-  # --------------------------------------------------------
-  def handle_event( {:value_changed, :pos_y, y}, _, %{ assigns: %{graph: graph, x: x} } = scene ) do
-    graph = Graph.modify( graph, :ui_group, &update_opts(&1, translate: {x, y}) )
-    scene = push_graph( scene, graph )
-    {:halt, assign(scene, graph: graph, y: y) }
+  def handle_event({:value_changed, :pos_x, x}, _, %{assigns: %{graph: graph, y: y}} = scene) do
+    graph = Graph.modify(graph, :ui_group, &update_opts(&1, translate: {x, y}))
+    scene = push_graph(scene, graph)
+    {:halt, assign(scene, graph: graph, x: x)}
   end
 
   # --------------------------------------------------------
-  def handle_event({:value_changed, :scale, scale}, _, %{ assigns: %{graph: graph} } = scene) do
-    graph = Graph.modify( graph, :ui_group, &update_opts(&1, scale: scale))
-    scene = push_graph( scene, graph )
-    {:halt, assign(scene, graph: graph) }
+  def handle_event({:value_changed, :pos_y, y}, _, %{assigns: %{graph: graph, x: x}} = scene) do
+    graph = Graph.modify(graph, :ui_group, &update_opts(&1, translate: {x, y}))
+    scene = push_graph(scene, graph)
+    {:halt, assign(scene, graph: graph, y: y)}
   end
 
   # --------------------------------------------------------
-  def handle_event({:value_changed, :rotate_ui, angle}, _, %{ assigns: %{graph: graph} } = scene) do
-    graph = Graph.modify( graph, :ui_group, &update_opts(&1, rotate: angle))
-    scene = push_graph( scene, graph )
-    {:halt, assign(scene, graph: graph) }
+  def handle_event({:value_changed, :scale, scale}, _, %{assigns: %{graph: graph}} = scene) do
+    graph = Graph.modify(graph, :ui_group, &update_opts(&1, scale: scale))
+    scene = push_graph(scene, graph)
+    {:halt, assign(scene, graph: graph)}
   end
 
   # --------------------------------------------------------
-  def handle_event({:value_changed, :rotate_quad, angle}, _, %{ assigns: %{graph: graph} } = scene) do
-    graph = Graph.modify( graph, :quad, &update_opts(&1, rotate: angle))
-    scene = push_graph( scene, graph )
-    {:halt, assign(scene, graph: graph) }
+  def handle_event({:value_changed, :rotate_ui, angle}, _, %{assigns: %{graph: graph}} = scene) do
+    graph = Graph.modify(graph, :ui_group, &update_opts(&1, rotate: angle))
+    scene = push_graph(scene, graph)
+    {:halt, assign(scene, graph: graph)}
   end
 
+  # --------------------------------------------------------
+  def handle_event({:value_changed, :rotate_quad, angle}, _, %{assigns: %{graph: graph}} = scene) do
+    graph = Graph.modify(graph, :quad, &update_opts(&1, rotate: angle))
+    scene = push_graph(scene, graph)
+    {:halt, assign(scene, graph: graph)}
+  end
 end

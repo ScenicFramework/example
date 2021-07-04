@@ -35,9 +35,7 @@ defmodule Example.Scene.Primitives do
   @triangle_circle_ellipse [
     triangle_spec({{0, 60}, {50, 0}, {50, 60}}, fill: :khaki, stroke: {4, :green}),
     circle_spec(30, fill: :red, stroke: {6, :yellow}, t: {110, 30}),
-    ellipse_spec({30, 40},
-      fill: :green, stroke: {4, :gray},
-      t: {200, 30} )
+    ellipse_spec({30, 40}, fill: :green, stroke: {4, :gray}, t: {200, 30})
   ]
 
   @quads [
@@ -84,7 +82,7 @@ defmodule Example.Scene.Primitives do
   ]
   @text [
     text_spec("Hello", translate: {0, 40}, font: :roboto, font_size: 50),
-    text_spec("World", translate: {00, 80}, fill: :purple, font: :roboto_mono),
+    text_spec("World", translate: {00, 80}, fill: :purple, font: :roboto_mono)
   ]
 
   @twisty_path path_spec(
@@ -131,13 +129,12 @@ defmodule Example.Scene.Primitives do
          |> Nav.add_to_graph(__MODULE__)
          |> Notes.add_to_graph(@notes)
 
-
   ##
   # And, finally, here's the code that executes at runtime. All it does
   # is load up the bird image, and push the previously contructed
   # graph into the scene.
 
   def init(scene, _param, _opts) do
-    { :ok, push_graph(scene, @graph) }
+    {:ok, push_graph(scene, @graph)}
   end
 end

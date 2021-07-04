@@ -12,6 +12,7 @@ defmodule Example.Component.Nav do
   # --------------------------------------------------------
   def validate(scene) when is_atom(scene), do: {:ok, scene}
   def validate({scene, _} = data) when is_atom(scene), do: {:ok, data}
+
   def validate(data) do
     {
       :error,
@@ -28,20 +29,22 @@ defmodule Example.Component.Nav do
   def init(scene, current_scene, opts) do
     {width, _} = scene.viewport.size
 
-    {background, text} = case opts[:theme] do
-      :dark ->
-        {{48, 48, 48}, :white}
+    {background, text} =
+      case opts[:theme] do
+        :dark ->
+          {{48, 48, 48}, :white}
 
-      :light ->
-        {{220, 220, 220}, :black}
+        :light ->
+          {{220, 220, 220}, :black}
 
-      _ ->
-        {{48, 48, 48}, :white}
-    end
+        _ ->
+          {{48, 48, 48}, :white}
+      end
 
-    graph = Graph.build( font_size: 20 )
-      |> rect( {width, @height}, fill: background )
-      |> text( "Scene:", translate: {15, 38}, align: :right, fill: text )
+    graph =
+      Graph.build(font_size: 20)
+      |> rect({width, @height}, fill: background)
+      |> text("Scene:", translate: {15, 38}, align: :right, fill: text)
       |> dropdown(
         {[
            {"Sensor", Example.Scene.Sensor},
@@ -50,7 +53,7 @@ defmodule Example.Component.Nav do
            {"Strokes", Example.Scene.Strokes},
            {"Components", Example.Scene.Components},
            {"Transforms", Example.Scene.Transforms},
-           {"Sprites", Example.Scene.Sprites},
+           {"Sprites", Example.Scene.Sprites}
          ], current_scene},
         id: :nav,
         translate: {90, 10}
@@ -59,27 +62,26 @@ defmodule Example.Component.Nav do
         opts[:theme] == :light,
         id: :light_or_dark,
         theme: :secondary,
-        translate: {width - 60, 16},
+        translate: {width - 60, 16}
       )
-      # |> digital_clock(text_align: :right, translate: {width - 20, 35})
 
+    # |> digital_clock(text_align: :right, translate: {width - 20, 35})
 
     push_graph(scene, graph)
 
-    { :ok, scene }
+    {:ok, scene}
   end
-
 
   # ----------------------------------------------------------------------------
   def handle_event({:value_changed, :nav, {scene_mod, param}}, _, scene) do
     ViewPort.set_root(scene.viewport, scene_mod, param)
-    { :noreply, scene }
+    {:noreply, scene}
   end
 
   # ----------------------------------------------------------------------------
   def handle_event({:value_changed, :nav, scene_mod}, _, scene) do
     ViewPort.set_root(scene.viewport, scene_mod)
-    { :noreply, scene }
+    {:noreply, scene}
   end
 
   # ----------------------------------------------------------------------------
@@ -88,9 +90,7 @@ defmodule Example.Component.Nav do
       true -> ViewPort.set_theme(scene.viewport, :light)
       false -> ViewPort.set_theme(scene.viewport, :dark)
     end
-    { :noreply, scene }
+
+    {:noreply, scene}
   end
-
 end
-
-

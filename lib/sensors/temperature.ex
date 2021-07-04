@@ -43,5 +43,4 @@ defmodule Example.Sensors.Temperature do
 
     {:noreply, %{state | t: t + 1}}
   end
-
 end

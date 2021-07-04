@@ -23,10 +23,9 @@ defmodule Example.MixProject do
   defp deps do
     [
       {:scenic, git: "https://github.com/boydm/scenic.git", branch: "v0.11"},
-      {:scenic_driver_glfw, git: "https://github.com/boydm/scenic_driver_glfw.git", branch: "v0.11"},
-
+      {:scenic_driver_glfw,
+       git: "https://github.com/boydm/scenic_driver_glfw.git", branch: "v0.11"},
       {:truetype_metrics, "~> 0.5", only: [:dev, :test], runtime: false},
-
       {:dialyxir, "~> 1.1", only: :dev, runtime: false}
     ]
   end

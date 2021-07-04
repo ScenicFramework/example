@@ -11,9 +11,9 @@ defmodule Example.Component.Notes do
   @font_size 20
   @indent 30
 
-
   # --------------------------------------------------------
   def validate(notes) when is_bitstring(notes), do: {:ok, notes}
+
   def validate(data) do
     {
       :error,
@@ -27,27 +27,31 @@ defmodule Example.Component.Notes do
   end
 
   # ----------------------------------------------------------------------------
-  def init(%Scene{viewport: viewport } = scene, notes, opts) do
+  def init(%Scene{viewport: viewport} = scene, notes, opts) do
     {vp_width, vp_height} = viewport.size
 
-    {background, text} = case opts[:theme] do
-      :dark ->
-        {{48, 48, 48}, :white}
+    {background, text} =
+      case opts[:theme] do
+        :dark ->
+          {{48, 48, 48}, :white}
 
-      :light ->
-        {{220, 220, 220}, :black}
+        :light ->
+          {{220, 220, 220}, :black}
 
-      _ ->
-        {{48, 48, 48}, :white}
-    end
+        _ ->
+          {{48, 48, 48}, :white}
+      end
 
-    graph = Graph.build(
-      font_size: @font_size, font: :roboto,
-      t: {0, vp_height - @height}, theme: opts[:theme]
-    )
-    |> rect( {vp_width, @height}, fill: background )
-    |> text( notes, translate: {@indent, @font_size * 2}, fill: text )
-    
-    { :ok, push_graph(scene, graph) }
+    graph =
+      Graph.build(
+        font_size: @font_size,
+        font: :roboto,
+        t: {0, vp_height - @height},
+        theme: opts[:theme]
+      )
+      |> rect({vp_width, @height}, fill: background)
+      |> text(notes, translate: {@indent, @font_size * 2}, fill: text)
+
+    {:ok, push_graph(scene, graph)}
   end
 end

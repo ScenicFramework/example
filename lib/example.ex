@@ -10,10 +10,9 @@ defmodule Example do
     # start the application with the default view_port
     children = [
       {Scenic, [main_viewport]},
-      Example.Sensors.Supervisor,
+      Example.Sensors.Supervisor
     ]
+
     Supervisor.start_link(children, strategy: :one_for_one)
   end
 end
-
-
