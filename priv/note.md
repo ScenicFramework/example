@@ -1,0 +1,1 @@
+The /priv folder is necessary as the build target for the static assets.
