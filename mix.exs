@@ -26,7 +26,6 @@ defmodule Example.MixProject do
       {:scenic_driver_glfw, git: "https://github.com/boydm/scenic_driver_glfw.git", branch: "v0.11"},
 
       {:truetype_metrics, "~> 0.5", only: [:dev, :test], runtime: false},
-      {:ex_image_info, "~> 0.2.4", only: [:dev, :test], runtime: false},
 
       {:dialyxir, "~> 1.1", only: :dev, runtime: false}
     ]

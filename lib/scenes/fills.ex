@@ -4,7 +4,7 @@ defmodule Example.Scene.Fills do
   alias Scenic.Graph
   # alias Scenic.Assets.Static
   alias Scenic.Assets.Stream
-  alias Scenic.Assets.Stream.Texture
+  alias Scenic.Assets.Stream.Bitmap
 
   import Scenic.Primitives
 
@@ -95,7 +95,7 @@ defmodule Example.Scene.Fills do
   end
 
   def handle_info( :draw, %{assigns: %{color: {r,g,b}}} = scene ) do
-    t = Texture.build(
+    t = Bitmap.build(
       :rgb, @width, @height,
       commit: true, clear: {rem(r,256),rem(g,256),rem(b,256)}
     )
