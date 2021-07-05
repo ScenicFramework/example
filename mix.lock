@@ -5,7 +5,7 @@
   "ex_image_info": {:hex, :ex_image_info, "0.2.4", "610002acba43520a9b1cf1421d55812bde5b8a8aeaf1fe7b1f8823e84e762adb", [:mix], [], "hexpm", "fd1a7e02664e3b14dfd3b231d22fdd48bd3dd694c4773e6272b3a6228f1106bc"},
   "font_metrics": {:hex, :font_metrics, "0.5.1", "10ce0b8b1bf092a2d3d307e05a7c433787ae8ca7cd1f3cf959995a628809a994", [:mix], [{:nimble_options, "~> 0.3", [hex: :nimble_options, repo: "hexpm", optional: false]}], "hexpm", "192e4288772839ae4dadccb0f5b1d5c89b73a0c3961ccea14b6181fdcd535e54"},
   "nimble_options": {:hex, :nimble_options, "0.3.5", "a4f6820cdcb4ee444afd78635f323e58e8a5ddf2fbbe9b9d283a99f972034bae", [:mix], [], "hexpm", "f5507cc90033a8d12769522009c80aa9164af6bab245dbd4ad421d008455f1e1"},
-  "scenic": {:git, "https://github.com/boydm/scenic.git", "cd707b10779eba73193e4ebcf4b055ed655bfe15", [branch: "v0.11"]},
-  "scenic_driver_glfw": {:git, "https://github.com/boydm/scenic_driver_glfw.git", "da9a9f512f5c6b1369d96434480698ef9214763c", [branch: "v0.11"]},
+  "scenic": {:git, "https://github.com/boydm/scenic.git", "d69b04a0ee70210b52cdb879f32946ca6cfcec63", [branch: "v0.11"]},
+  "scenic_driver_glfw": {:git, "https://github.com/boydm/scenic_driver_glfw.git", "631a4b42f3ff332f4cf42d5a1a51f666ad48aa64", [branch: "v0.11"]},
   "truetype_metrics": {:hex, :truetype_metrics, "0.5.1", "c2099f0ff199caecf8a814f8a1feda284681e88bf9a83e7b6ae95fffb2e7f336", [:mix], [{:font_metrics, "~> 0.5", [hex: :font_metrics, repo: "hexpm", optional: false]}], "hexpm", "d513cb5985551b020df3c4db25badad1b2b3d216bb82d03e5fda47751d3dd483"},
 }
