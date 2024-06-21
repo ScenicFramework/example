@@ -17,6 +17,19 @@
       {
         devShell = pkgs.mkShell {
           buildInputs = [
+            util-linux
+            libselinux
+            libthai
+            libdatrie
+            libsepol
+            libxkbcommon
+            libepoxy
+            pcre
+            pcre2
+            xorg.libXtst
+            cairo
+            gtk3
+            freeglut
             elixir_1_16
             elixir_ls
             glibcLocales
