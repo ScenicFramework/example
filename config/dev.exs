@@ -11,10 +11,12 @@ config :example, :viewport,
   default_scene: Example.Scene.Sensor,
   drivers: [
     [
-      module: Scenic.Driver.Glfw,
+      module: Scenic.Driver.Local,
       name: :glfw_driver,
-      title: "Super Test Window",
-      resizeable: false
-      # on_close: :stop_driver
+      window: [
+        title: "Super Test Window",
+        resizeable: false
+      ],
+      on_close: :stop_driver
     ]
   ]
